@@ -17,8 +17,8 @@ module "vpc" {
 }
 
 module "subnets" {
-  source    = "./subnets"
-  vpc_id    = module.vpc.vpc_id
+  source = "./subnets"
+  vpc_id = module.vpc.vpc_id
 }
 
 module "security_group" {
@@ -36,7 +36,7 @@ module "nginx_instances" {
 
 module "bastion" {
   source ="./bastion"
-  private_subnet_id = module.subnets.private_subnet_a
+  public_subnet_id = module.subnets.public_subnet_a
   security_group_ids = [module.security_group.bastion_sg_id]
 }
 
